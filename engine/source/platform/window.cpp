@@ -1,6 +1,6 @@
 #include "window.hpp"
 
-void glfw_WindowErrorCallback(int error_code, const char* description) {
+static void glfw_WindowErrorCallback(int error_code, const char* description) {
 	GRAPE_LOG_CRITICAL(
 		"GLFW v{0}.{1}.{2} Error {3}: {4}",
 		GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION,
@@ -98,9 +98,7 @@ void Window::SetupEvents(const std::function<void(const GRAPE::Event&)>& callbac
 
 	// Test Event
 	m_event_callback.operator()(
-		GRAPE::Event{
-			.type = GRAPE::EventType::NONE
-		}
+		GRAPE::WindowCloseEvent()
 	);
 }
 
