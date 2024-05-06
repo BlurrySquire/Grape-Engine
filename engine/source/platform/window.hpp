@@ -10,10 +10,15 @@
 
 using EventCallbackFun = std::function<void(const GRAPE::Event&)>;
 
+struct EventContext {
+	EventCallbackFun* event_callback;
+};
+
 class Window {
 private:
 	GLFWwindow* m_window;
 	EventCallbackFun m_event_callback = NULL;
+	EventContext m_eventcontext;
 public:
 	Window(const GRAPE::AppInfo& appinfo);
 	~Window();

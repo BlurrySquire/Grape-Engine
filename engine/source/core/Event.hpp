@@ -34,7 +34,7 @@ namespace GRAPE {
 		uint32_t m_width, m_height;
 
 		inline WindowResizeEvent(uint32_t width, uint32_t height)
-		: Event(EventType::WINDOW_CLOSE) {
+		: Event(EventType::WINDOW_RESIZE) {
 
 			m_width = width;
 			m_height = height;

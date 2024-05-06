@@ -1,9 +1,5 @@
 #include "window.hpp"
 
-struct EventContext {
-	EventCallbackFun* event_callback;
-};
-
 static void glfw_WindowErrorCallback(int error_code, const char* description) {
 	GRAPE_LOG_CRITICAL(
 		"GLFW v{0}.{1}.{2} Error {3}: {4}",
@@ -97,11 +93,11 @@ void Window::SetupEvents(const EventCallbackFun& callback_func) {
 
 	m_event_callback = callback_func;
 
-	EventContext event_context = {
+	m_eventcontext = EventContext{
 		.event_callback = &m_event_callback
 	};
 
-	glfwSetWindowUserPointer(m_window, &event_context);
+	glfwSetWindowUserPointer(m_window, &m_eventcontext);
 
 	GRAPE_LOG_TRACE(
 		"Event: Creating event of type 'NULL'."
