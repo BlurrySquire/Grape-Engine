@@ -15,21 +15,29 @@ namespace GRAPE {
 	public:
 		EventType m_type;
 		bool m_handled;
-	};
 
-	class WindowCloseEvent : Event {
-	public:
-		inline WindowCloseEvent() {
-			m_type = EventType::WINDOW_CLOSE;
+		inline Event(const EventType& type) {
+			m_type = type;
 			m_handled = false;
 		}
 	};
 
-	class WindowResizeEvent : Event {
+	class WindowCloseEvent : public Event {
 	public:
-		inline WindowResizeEvent(uint32_t width, uint32_t height) {
-			m_type = EventType::WINDOW_RESIZE;
-			m_handled = false;
+		inline WindowCloseEvent()
+		: Event(EventType::WINDOW_CLOSE) {
+		}
+	};
+
+	class WindowResizeEvent : public Event {
+	public:
+		uint32_t m_width, m_height;
+
+		inline WindowResizeEvent(uint32_t width, uint32_t height)
+		: Event(EventType::WINDOW_CLOSE) {
+
+			m_width = width;
+			m_height = height;
 		}
 	};
 }

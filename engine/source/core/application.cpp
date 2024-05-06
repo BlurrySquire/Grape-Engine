@@ -10,14 +10,18 @@ namespace GRAPE {
 	}
 
 	void Application::HandleEvents(const GRAPE::Event& event) {
-		switch (event.type) {
+		switch (event.m_type) {
 			case GRAPE::EventType::NONE: {
-				GRAPE_LOG_INFO("Application: Event received. EventType: NULL, Test Event.");
+				GRAPE_LOG_INFO(
+					"Application: Event recieved of type 'NULL'."
+				);
 			} break;
 
-			case GRAPE::EventType::WINDOW_CLOSE: {
-				GRAPE_LOG_INFO("Application: Event received. EventType: Window Close.");
-				m_isrunning = false;
+			case EventType::WINDOW_CLOSE: {
+				GRAPE_LOG_INFO(
+					"Application: Event recieved of type 'Window Close'."
+				);
+				this->~Application();
 			} break;
 		}
 	}

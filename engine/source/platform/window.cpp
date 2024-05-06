@@ -93,12 +93,12 @@ void Window::SetupEvents(const std::function<void(const GRAPE::Event&)>& callbac
 
 	m_event_callback = callback_func;
 
-	// To-Do:
-	//	- Setup GLFW callbacks for events.
+	GRAPE_LOG_TRACE(
+		"Event: Creating event of type 'NULL'."
+	);
 
-	// Test Event
 	m_event_callback.operator()(
-		GRAPE::WindowCloseEvent()
+		GRAPE::Event(GRAPE::EventType::NONE)
 	);
 }
 
@@ -108,10 +108,12 @@ void Window::PollEvents() {
 	if (glfwWindowShouldClose(m_window)) {
 		glfwSetWindowShouldClose(m_window, GLFW_FALSE);
 
+		GRAPE_LOG_TRACE(
+			"Event: Creating event of type 'Window Close'."
+		);
+
 		m_event_callback.operator()(
-			GRAPE::Event{
-				.type = GRAPE::EventType::WINDOW_CLOSE
-			}
+			GRAPE::WindowCloseEvent()
 		);
 	}
 }
