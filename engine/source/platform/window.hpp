@@ -8,10 +8,12 @@
 
 #include <GLFW/glfw3.h>
 
+using EventCallbackFun = std::function<void(const GRAPE::Event&)>;
+
 class Window {
 private:
 	GLFWwindow* m_window;
-	std::function<void(const GRAPE::Event&)> m_event_callback = NULL;
+	EventCallbackFun m_event_callback = NULL;
 public:
 	Window(const GRAPE::AppInfo& appinfo);
 	~Window();

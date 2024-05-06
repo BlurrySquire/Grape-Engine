@@ -1,5 +1,9 @@
 #include "window.hpp"
 
+struct EventContext {
+	EventCallbackFun* event_callback;
+};
+
 static void glfw_WindowErrorCallback(int error_code, const char* description) {
 	GRAPE_LOG_CRITICAL(
 		"GLFW v{0}.{1}.{2} Error {3}: {4}",
@@ -86,12 +90,18 @@ void Window::GetSize(int* width, int* height) {
 	glfwGetWindowSize(m_window, width, height);
 }
 
-void Window::SetupEvents(const std::function<void(const GRAPE::Event&)>& callback_func) {
+void Window::SetupEvents(const EventCallbackFun& callback_func) {
 	GRAPE_LOG_TRACE(
 		"Window: Initialising Events System."
 	);
 
 	m_event_callback = callback_func;
+
+	EventContext event_context = {
+		.event_callback = &m_event_callback
+	};
+
+	glfwSetWindowUserPointer(m_window, &event_context);
 
 	GRAPE_LOG_TRACE(
 		"Event: Creating event of type 'NULL'."
@@ -99,6 +109,24 @@ void Window::SetupEvents(const std::function<void(const GRAPE::Event&)>& callbac
 
 	m_event_callback.operator()(
 		GRAPE::Event(GRAPE::EventType::NONE)
+	);
+
+	// Create lambdas for GLFW event callbacks.
+
+	glfwSetWindowSizeCallback(
+		m_window,
+		[](GLFWwindow* window, int width, int height) {
+			EventContext* context = static_cast<EventContext*>(glfwGetWindowUserPointer(window));
+
+			GRAPE_LOG_TRACE(
+				"Event: Create event of type 'Window Resize' to ({0}x{1})",
+				width, height
+			);
+
+			context->event_callback->operator()(
+				GRAPE::WindowResizeEvent(width, height)
+			);
+		}
 	);
 }
 

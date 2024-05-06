@@ -5,7 +5,7 @@ int main(void) {
         .win_title = "Grape-Engine Sandbox",
         .win_width = 1280,
         .win_height = 720,
-        .resizable = false
+        .resizable = true
     };
 
     GRAPE::Application application(app_info);

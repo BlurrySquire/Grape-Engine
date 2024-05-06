@@ -13,15 +13,28 @@ namespace GRAPE {
 		switch (event.m_type) {
 			case GRAPE::EventType::NONE: {
 				GRAPE_LOG_INFO(
-					"Application: Event recieved of type 'NULL'."
+					"Application: Event received of type 'NULL'."
 				);
 			} break;
 
 			case EventType::WINDOW_CLOSE: {
 				GRAPE_LOG_INFO(
-					"Application: Event recieved of type 'Window Close'."
+					"Application: Event received of type 'Window Close'."
 				);
-				this->~Application();
+				m_isrunning = false;
+			} break;
+
+			case EventType::WINDOW_RESIZE: {
+				WindowResizeEvent local_event = static_cast<const WindowResizeEvent&>(event);
+
+				GRAPE_LOG_INFO(
+					"Application: Event received of type 'Window Resize' to ({0}x{1})",
+					local_event.m_width, local_event.m_height
+				);
+
+				m_appinfo.win_width = local_event.m_width;
+				m_appinfo.win_height = local_event.m_height;
+				m_window.UpdateSize(local_event.m_width, local_event.m_height);
 			} break;
 		}
 	}
