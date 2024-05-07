@@ -1,5 +1,7 @@
 #pragma once
 
+#include <GLFW/glfw3.h>
+
 namespace GRAPE {
 	enum class EventType {
 		NONE = 0,
@@ -39,5 +41,11 @@ namespace GRAPE {
 			m_width = width;
 			m_height = height;
 		}
+	};
+
+	enum class Mouse {
+		LEFT = GLFW_MOUSE_BUTTON_LEFT,
+		MIDDLE = GLFW_MOUSE_BUTTON_MIDDLE,
+		RIGHT = GLFW_MOUSE_BUTTON_RIGHT
 	};
 }
