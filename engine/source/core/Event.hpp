@@ -9,8 +9,8 @@ namespace GRAPE {
 		WINDOW_RESIZE = 2,
 		KEYBOARD_KEY_DOWN = 3,
 		KEYBOARD_KEY_UP = 4,
-		MOUSE_MOVE = 5,
-		MOUSE_DOWN = 6,
+		MOUSE_CLICK = 5,
+		MOUSE_MOVE = 6,
 	};
 
 	class Event {
@@ -23,6 +23,8 @@ namespace GRAPE {
 			m_handled = false;
 		}
 	};
+
+	//  Window Events  //
 
 	class WindowCloseEvent : public Event {
 	public:
@@ -37,19 +39,34 @@ namespace GRAPE {
 
 		inline WindowResizeEvent(uint32_t width, uint32_t height)
 		: Event(EventType::WINDOW_RESIZE) {
-
 			m_width = width;
 			m_height = height;
 		}
 	};
 
-	enum class Mouse {
+	//  Mouse Events  //
+
+	enum class MouseButton {
 		LEFT = GLFW_MOUSE_BUTTON_LEFT,
 		MIDDLE = GLFW_MOUSE_BUTTON_MIDDLE,
 		RIGHT = GLFW_MOUSE_BUTTON_RIGHT
 	};
 
-	enum class Keys {
+	class MouseClickEvent : public Event {
+	public:
+		MouseButton m_button;
+		bool m_click;
+
+		inline MouseClickEvent(MouseButton button, bool click)
+		: Event(EventType::MOUSE_CLICK) {
+			m_button = button;
+			m_click = click;
+		}
+	};
+
+	//  Keyboard Events  //
+
+	enum class KeyboardKeys {
 		KEY_SPACE = GLFW_KEY_SPACE,
 		KEY_APOSTROPHIE = GLFW_KEY_APOSTROPHE,
 		KEY_COMMA = GLFW_KEY_COMMA,
