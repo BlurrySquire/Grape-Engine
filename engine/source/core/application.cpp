@@ -10,7 +10,7 @@ namespace GRAPE {
 	}
 
 	void Application::HandleEvents(const GRAPE::Event& event) {
-		switch (event.m_type) {
+		switch (event.type) {
 			case GRAPE::EventType::NONE: {
 				GRAPE_LOG_INFO(
 					"Application: Event received of type 'NULL'."
@@ -29,12 +29,32 @@ namespace GRAPE {
 
 				GRAPE_LOG_INFO(
 					"Application: Event received of type 'Window Resize' to ({0}x{1})",
-					local_event.m_width, local_event.m_height
+					local_event.width, local_event.height
 				);
 
-				m_appinfo.win_width = local_event.m_width;
-				m_appinfo.win_height = local_event.m_height;
-				m_window.UpdateSize(local_event.m_width, local_event.m_height);
+				m_appinfo.win_width = local_event.width;
+				m_appinfo.win_height = local_event.height;
+				m_window.UpdateSize(local_event.width, local_event.height);
+			} break;
+
+			case EventType::MOUSE_CLICK: {
+				MouseClickEvent local_event = static_cast<const MouseClickEvent&>(event);
+
+				GRAPE_LOG_INFO(
+					"Application: Event received of type 'Mouse {0}', Button '{1}'",
+					local_event.click ? "Click" : "Release",
+					static_cast<int>(local_event.button)
+				);
+			} break;
+
+			case EventType::MOUSE_MOVE: {
+				MouseMoveEvent local_event = static_cast<const MouseMoveEvent&>(event);
+
+				GRAPE_LOG_INFO(
+					"Application: Event Received of type 'Mouse Move', ({0}, {1})",
+					local_event.mouse_x,
+					local_event.mouse_y
+				);
 			} break;
 		}
 	}

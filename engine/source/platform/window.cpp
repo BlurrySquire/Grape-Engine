@@ -146,6 +146,25 @@ void Window::SetupEvents(const EventCallbackFun& callback_func) {
 			);
 		}
 	);
+
+	glfwSetCursorPosCallback(
+		m_window,
+		[](GLFWwindow* window, double xpos, double ypos) {
+			EventContext* context = static_cast<EventContext*>(glfwGetWindowUserPointer(window));
+
+			GRAPE_LOG_TRACE(
+				"Event: Created event of type 'Mouse Move', ({0}, {1})",
+				xpos, ypos
+			);
+
+			context->event_callback->operator()(
+				GRAPE::MouseMoveEvent(
+					static_cast<uint32_t>(xpos),
+					static_cast<uint32_t>(ypos)
+				)
+			);
+		}
+	);
 }
 
 void Window::PollEvents() {

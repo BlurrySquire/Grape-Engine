@@ -7,20 +7,19 @@ namespace GRAPE {
 		NONE = 0,
 		WINDOW_CLOSE = 1,
 		WINDOW_RESIZE = 2,
-		KEYBOARD_KEY_DOWN = 3,
-		KEYBOARD_KEY_UP = 4,
-		MOUSE_CLICK = 5,
-		MOUSE_MOVE = 6,
+		KEYBOARD_KEY = 3,
+		MOUSE_CLICK = 4,
+		MOUSE_MOVE = 5,
 	};
 
 	class Event {
 	public:
-		EventType m_type;
-		bool m_handled;
+		EventType type;
+		bool handled;
 
-		inline Event(const EventType& type) {
-			m_type = type;
-			m_handled = false;
+		inline Event(const EventType& _type) {
+			type = _type;
+			handled = false;
 		}
 	};
 
@@ -35,12 +34,12 @@ namespace GRAPE {
 
 	class WindowResizeEvent : public Event {
 	public:
-		uint32_t m_width, m_height;
+		uint32_t width, height;
 
-		inline WindowResizeEvent(uint32_t width, uint32_t height)
+		inline WindowResizeEvent(uint32_t _width, uint32_t _height)
 		: Event(EventType::WINDOW_RESIZE) {
-			m_width = width;
-			m_height = height;
+			width = _width;
+			height = _height;
 		}
 	};
 
@@ -54,13 +53,24 @@ namespace GRAPE {
 
 	class MouseClickEvent : public Event {
 	public:
-		MouseButton m_button;
-		bool m_click;
+		MouseButton button;
+		bool click;
 
-		inline MouseClickEvent(MouseButton button, bool click)
+		inline MouseClickEvent(MouseButton _button, bool _click)
 		: Event(EventType::MOUSE_CLICK) {
-			m_button = button;
-			m_click = click;
+			button = _button;
+			click = _click;
+		}
+	};
+
+	class MouseMoveEvent : public Event {
+	public:
+		uint32_t mouse_x, mouse_y;
+
+		inline MouseMoveEvent(uint32_t x, uint32_t y)
+		: Event(EventType::MOUSE_MOVE) {
+			mouse_x = x;
+			mouse_y = y;
 		}
 	};
 
