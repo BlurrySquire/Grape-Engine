@@ -17,8 +17,8 @@ struct EventContext {
 class Window {
 private:
 	GLFWwindow* m_window;
-	EventCallbackFun m_event_callback = NULL;
-	EventContext m_eventcontext;
+	EventCallbackFun m_event_callback = nullptr;
+	EventContext m_eventcontext = nullptr;
 public:
 	Window(const GRAPE::AppInfo& appinfo);
 	~Window();

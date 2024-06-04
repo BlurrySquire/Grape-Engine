@@ -124,6 +124,28 @@ void Window::SetupEvents(const EventCallbackFun& callback_func) {
 			);
 		}
 	);
+
+	glfwSetMouseButtonCallback(
+		m_window,
+		[](GLFWwindow* window, int button, int action, int mods) {
+			(mods);
+
+			EventContext* context = static_cast<EventContext*>(glfwGetWindowUserPointer(window));
+
+			GRAPE_LOG_TRACE(
+				"Event: Created event of type 'Mouse {0}', button '{1}'",
+				action == GLFW_PRESS ? "Clicked" : "Released",
+				button
+			);
+
+			context->event_callback->operator()(
+				GRAPE::MouseClickEvent(
+					static_cast<GRAPE::MouseButton>(button),
+					action == GLFW_PRESS ? true : false
+				)
+			);
+		}
+	);
 }
 
 void Window::PollEvents() {
