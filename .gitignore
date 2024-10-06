@@ -4,5 +4,6 @@ build
 # Visual Studio 2022 Files
 */*.vcxproj
 */*.vcxproj.user
+*/*.vcxproj.user
 *.sln
 .vs
