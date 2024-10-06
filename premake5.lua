@@ -2,7 +2,7 @@ IncludeDirectories = {}
 
 IncludeDirectories["engine"] = "%{wks.location}/engine"
 IncludeDirectories["glad"] = "%{wks.location}/submodules/glad/include"
-IncludeDirectories["glfw"] = "%{wks.location}/glad/glfw/include"
+IncludeDirectories["glfw"] = "%{wks.location}/submodules/glfw/include"
 
 workspace "Game-Engine"
     architecture    "x86_64"

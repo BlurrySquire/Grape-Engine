@@ -1,14 +1,20 @@
-#ifndef HPP_ENGINE_CORE
-#define HPP_ENGINE_CORE
+#ifndef HPP_GRAPEENGINE_CORE
+#define HPP_GRAPEENGINE_CORE
 
-// Standard int
-#include <cstdint>
-#include <cstddef>
+// Common Data Types
+using u8 = unsigned char;
+using u16 = unsigned short;
+using u32 = unsigned int;
+using u64 = unsigned long long;
+
+using i8 = signed char;
+using i16 = signed short;
+using i32 = signed int;
+using i64 = signed long long;
+
+using f32 = float;
+using f64 = double;
 
 #include <string>
-
-namespace GRAPE {
-	void PrintString(std::string message);
-};
 
 #endif
