@@ -1,0 +1,8 @@
+# Generic Project Files
+build
+
+# Visual Studio 2022 Files
+*/*.vcxproj
+*/*.vcxproj.user
+*.sln
+.vs
