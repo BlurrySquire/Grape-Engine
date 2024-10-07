@@ -22,7 +22,7 @@ namespace GRAPE {
 		void Fatal(std::format_string<ArgTypes...> format, ArgTypes&&... args) {
 			std::stringstream stream;
 			stream << "[FATAL]: " << std::format(format, std::forward<ArgTypes>(args)...);
-			this->LogMessage(stream.str(), "\033[37;41m");
+			this->LogMessage(stream.str(), "\033[97;41m");
 		}
 
 		template <typename... ArgTypes>
@@ -45,6 +45,27 @@ namespace GRAPE {
 			stream << "[INFO]: " << std::format(format, std::forward<ArgTypes>(args)...);
 			this->LogMessage(stream.str(), "\033[36m");
 		}
+
+		template <typename... ArgTypes>
+		void Trace(std::format_string<ArgTypes...> format, ArgTypes&&... args) {
+			std::stringstream stream;
+			stream << "[TRACE]: " << std::format(format, std::forward<ArgTypes>(args)...);
+			this->LogMessage(stream.str(), "\033[37m");
+		}
+
+		#ifdef GRAPE_DEBUG
+			template <typename... ArgTypes>
+			void Debug(std::format_string<ArgTypes...> format, ArgTypes&&... args) {
+				std::stringstream stream;
+				stream << "[DEBUG]: " << std::format(format, std::forward<ArgTypes>(args)...);
+				this->LogMessage(stream.str(), "\033[92m");
+			}
+		#else
+			template <typename... ArgTypes>
+			void Debug(std::format_string<ArgTypes...> format, ArgTypes&&... args) {
+
+			}
+		#endif
 	};
 }
 

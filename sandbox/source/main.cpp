@@ -14,6 +14,8 @@ public:
 		GRAPE::Logger::GetLogger().Error("Testing");
 		GRAPE::Logger::GetLogger().Warn("Testing");
 		GRAPE::Logger::GetLogger().Info("Testing");
+		GRAPE::Logger::GetLogger().Trace("Testing");
+		GRAPE::Logger::GetLogger().Debug("Testing");
 	}
 
 	void Exit() override {
