@@ -7,7 +7,7 @@ namespace GRAPE {
 
 	}
 
-	void Logger::LogMessage(const std::string& message) {
-		std::cout << message << std::endl;
+	void Logger::LogMessage(const std::string& message, const std::string& colour) {
+		std::cout << colour << message << "\033[0m" << std::endl;
 	}
 };

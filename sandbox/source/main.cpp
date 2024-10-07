@@ -10,7 +10,10 @@ public:
 		
 		this->InitWindow(false);
 
-		GRAPE::Logger::GetLogger().Fatal("Sandbox: {}", "Hello, World!");
+		GRAPE::Logger::GetLogger().Fatal("Testing");
+		GRAPE::Logger::GetLogger().Error("Testing");
+		GRAPE::Logger::GetLogger().Warn("Testing");
+		GRAPE::Logger::GetLogger().Info("Testing");
 	}
 
 	void Exit() override {
