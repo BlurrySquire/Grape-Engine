@@ -63,7 +63,7 @@ namespace GRAPE {
 		#else
 			template <typename... ArgTypes>
 			void Debug(std::format_string<ArgTypes...> format, ArgTypes&&... args) {
-
+				(format = format); // bye bye error
 			}
 		#endif
 	};
