@@ -1,6 +1,8 @@
 #ifndef HPP_GRAPEENGINE_APPLICATION
 #define HPP_GRAPEENGINE_APPLICATION
 
+#include <string>
+
 #include "core.hpp"
 
 // Forward declare window class

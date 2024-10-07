@@ -1,6 +1,6 @@
 #include "core.hpp"
-
 #include "application.hpp"
+#include "logger.hpp"
 
 class Sandbox : public GRAPE::Application {
 public:
@@ -9,6 +9,8 @@ public:
 		this->SetAppSize(800, 600);
 		
 		this->InitWindow(false);
+
+		GRAPE::Logger::GetLogger().Fatal("Sandbox: {}", "Hello, World!");
 	}
 
 	void Exit() override {
