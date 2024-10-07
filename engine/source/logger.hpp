@@ -6,15 +6,22 @@
 #include <string>
 #include <format>
 
+#define GRAPE_LOG_FATAL(format, ...) GRAPE::Logger::GetLogger().Fatal(format, __VA_ARGS__);
+#define GRAPE_LOG_ERROR(format, ...) GRAPE::Logger::GetLogger().Error(format, __VA_ARGS__);
+#define GRAPE_LOG_WARN(format, ...) GRAPE::Logger::GetLogger().Warn(format, __VA_ARGS__);
+#define GRAPE_LOG_INFO(format, ...) GRAPE::Logger::GetLogger().Info(format, __VA_ARGS__);
+#define GRAPE_LOG_TRACE(format, ...) GRAPE::Logger::GetLogger().Trace(format, __VA_ARGS__);
+#define GRAPE_LOG_DEBUG(format, ...) GRAPE::Logger::GetLogger().Debug(format, __VA_ARGS__);
+
 namespace GRAPE {
 	class Logger {
 	private:
-		Logger();
+		Logger(const std::string& log_name);
 
 		void LogMessage(const std::string& message, const std::string& colour);
 	public:
-		inline static Logger& GetLogger() {
-			static Logger self{};
+		inline static Logger& GetLogger() noexcept {
+			static Logger self("game-log.txt");
 			return self;
 		}
 

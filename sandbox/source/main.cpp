@@ -10,12 +10,12 @@ public:
 		
 		this->InitWindow(false);
 
-		GRAPE::Logger::GetLogger().Fatal("Testing");
-		GRAPE::Logger::GetLogger().Error("Testing");
-		GRAPE::Logger::GetLogger().Warn("Testing");
-		GRAPE::Logger::GetLogger().Info("Testing");
-		GRAPE::Logger::GetLogger().Trace("Testing");
-		GRAPE::Logger::GetLogger().Debug("Testing");
+		GRAPE_LOG_FATAL("Testing");
+		GRAPE_LOG_ERROR("Testing");
+		GRAPE_LOG_WARN("Testing");
+		GRAPE_LOG_INFO("Testing");
+		GRAPE_LOG_TRACE("Testing");
+		GRAPE_LOG_DEBUG("Testing");
 	}
 
 	void Exit() override {

@@ -3,8 +3,8 @@
 #include <iostream>
 
 namespace GRAPE {
-	Logger::Logger() {
-
+	Logger::Logger(const std::string& log_name) {
+		(log_name);
 	}
 
 	void Logger::LogMessage(const std::string& message, const std::string& colour) {
