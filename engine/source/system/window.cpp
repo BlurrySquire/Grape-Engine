@@ -1,11 +1,15 @@
 #include "window.hpp"
 
-#include <iostream>
+#include "logger.hpp"
 
 namespace System {
 	Window::Window(const std::string& title, u32 width, u32 height, bool fullscreen) {
 		if (!glfwInit()) {
-			// log something
+			GRAPE_LOG_FATAL(
+				"GLFW Backend: Failed to init - {}.",
+				glfwGetError(nullptr)
+			);
+
 			return;
 		}
 
@@ -28,7 +32,11 @@ namespace System {
 		}
 
 		if (this->pWindow == nullptr) {
-			// log something. critical error.
+			GRAPE_LOG_FATAL(
+				"GLFW Backend: Failed to open a window - {}.",
+				glfwGetError(nullptr)
+			);
+
 			return;
 		}
 	}
