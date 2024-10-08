@@ -10,7 +10,17 @@
 #define GRAPE_LOG_WARN(format, ...) GRAPE::Logger::GetLogger().Warn(format, __VA_ARGS__);
 #define GRAPE_LOG_INFO(format, ...) GRAPE::Logger::GetLogger().Info(format, __VA_ARGS__);
 #define GRAPE_LOG_TRACE(format, ...) GRAPE::Logger::GetLogger().Trace(format, __VA_ARGS__);
-#define GRAPE_LOG_DEBUG(format, ...) GRAPE::Logger::GetLogger().Debug(format, __VA_ARGS__);
+
+#define GRAPE_ASSERT(value, format, ...) \
+	if (value) { GRAPE::Logger::GetLogger().Fatal(format, __VA_ARGS__); }
+
+#if defined(GRAPE_DEBUG)
+	#define GRAPE_LOG_DEBUG(format, ...) GRAPE::Logger::GetLogger().Debug(format, __VA_ARGS__);
+	#define GRAPE_LOG_TRACE(format, ...) GRAPE::Logger::GetLogger().Trace(format, __VA_ARGS__);
+#else defined(GRAPE_RELEASE)
+	#define GRAPE_LOG_DEBUG(format, ...)
+	#define GRAPE_LOG_TRACE(format, ...)
+#endif
 
 namespace GRAPE {
 	class Logger {
@@ -54,24 +64,19 @@ namespace GRAPE {
 			this->LogMessage(stream.str(), "\033[36m");
 		}
 
-		template <typename... ArgTypes>
-		void Trace(std::format_string<ArgTypes...> format, ArgTypes&&... args) {
-			std::stringstream stream;
-			stream << "[TRACE]: " << std::format(format, std::forward<ArgTypes>(args)...);
-			this->LogMessage(stream.str(), "\033[37m");
-		}
-
-		#ifdef GRAPE_DEBUG
+		#if defined(GRAPE_DEBUG)
 			template <typename... ArgTypes>
 			void Debug(std::format_string<ArgTypes...> format, ArgTypes&&... args) {
 				std::stringstream stream;
 				stream << "[DEBUG]: " << std::format(format, std::forward<ArgTypes>(args)...);
 				this->LogMessage(stream.str(), "\033[92m");
 			}
-		#else
+
 			template <typename... ArgTypes>
-			void Debug(std::format_string<ArgTypes...> format, ArgTypes&&... args) {
-				(format = format); // bye bye error
+			void Trace(std::format_string<ArgTypes...> format, ArgTypes&&... args) {
+				std::stringstream stream;
+				stream << "[TRACE]: " << std::format(format, std::forward<ArgTypes>(args)...);
+				this->LogMessage(stream.str(), "\033[37m");
 			}
 		#endif
 	};

@@ -14,8 +14,11 @@ public:
 		GRAPE_LOG_ERROR("Testing");
 		GRAPE_LOG_WARN("Testing");
 		GRAPE_LOG_INFO("Testing");
-		GRAPE_LOG_TRACE("Testing");
 		GRAPE_LOG_DEBUG("Testing");
+		GRAPE_LOG_TRACE("Testing");
+
+		bool assert_test = false;
+		GRAPE_ASSERT(assert_test != true, "'assert_test == true' failed.");
 	}
 
 	void Exit() override {
