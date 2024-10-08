@@ -1,7 +1,6 @@
 #ifndef HPP_GRAPEENGINE_LOGGER
 #define HPP_GRAPEENGINE_LOGGER
 
-#include <iostream>
 #include <sstream>
 #include <string>
 #include <format>
@@ -19,6 +18,8 @@ namespace GRAPE {
 		Logger(const std::string& log_name);
 
 		void LogMessage(const std::string& message, const std::string& colour);
+
+		std::string log_file;
 	public:
 		inline static Logger& GetLogger() noexcept {
 			static Logger self("game-log.txt");
