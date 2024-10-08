@@ -47,7 +47,7 @@ namespace GRAPE {
 		void Error(std::format_string<ArgTypes...> format, ArgTypes&&... args) {
 			std::stringstream stream;
 			stream << "[ERROR]: " << std::format(format, std::forward<ArgTypes>(args)...);
-			this->LogMessage(stream.str(), "\033[31m");
+			this->LogMessage(stream.str(), "\033[91m");
 		}
 
 		template <typename... ArgTypes>
