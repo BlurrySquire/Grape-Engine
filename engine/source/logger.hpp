@@ -35,16 +35,16 @@ namespace GRAPE {
 
 	class Logger {
 	private:
-		Logger(const std::string& log_name);
-
 		void LogMessage(const std::string& message, LogLevel level);
 
-		std::string log_file;
+		std::string log_file = "game-log.txt";
 	public:
-		inline static Logger& GetLogger() noexcept {
-			static Logger self("game-log.txt");
-			return self;
-		}
+		Logger() = default;
+
+		static Logger& GetLogger();
+
+		void SetLogFile(const std::string& filepath);
+		void ClearLogFile();
 
 		template <typename... ArgTypes>
 		void Fatal(std::format_string<ArgTypes...> format, ArgTypes&&... args) {

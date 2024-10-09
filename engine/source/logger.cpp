@@ -4,10 +4,16 @@
 #include <fstream>
 
 namespace GRAPE {
-	Logger::Logger(const std::string& log_name) {
-		this->log_file = log_name;
-		
-		// Reset log file
+	Logger& Logger::GetLogger() {
+		static Logger self;
+		return self;
+	}
+
+	void Logger::SetLogFile(const std::string& filepath) {
+		this->log_file = filepath;
+	}
+
+	void Logger::ClearLogFile() {
 		std::fstream file(this->log_file, std::ios::out | std::ios::trunc);
 		if (file.is_open()) {
 			file.close();

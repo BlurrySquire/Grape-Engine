@@ -27,6 +27,10 @@ public:
 };
 
 int main() {
+	// This needs to be done first.
+	GRAPE::Logger::GetLogger().SetLogFile("test-log.txt");
+	GRAPE::Logger::GetLogger().ClearLogFile();
+
 	Sandbox sandbox;
 	sandbox.Init();
 	sandbox.Run();
