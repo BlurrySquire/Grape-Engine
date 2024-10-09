@@ -1,7 +1,6 @@
 #ifndef HPP_GRAPEENGINE_LOGGER
 #define HPP_GRAPEENGINE_LOGGER
 
-#include <sstream>
 #include <string>
 #include <format>
 
@@ -48,45 +47,51 @@ namespace GRAPE {
 
 		template <typename... ArgTypes>
 		void Fatal(std::format_string<ArgTypes...> format, ArgTypes&&... args) {
-			std::stringstream stream;
-			stream << "[FATAL]: " << std::format(format, std::forward<ArgTypes>(args)...);
-			this->LogMessage(stream.str(), LogLevel::FATAL);
+			this->LogMessage(
+				std::format("[FATAL]: {}", std::format(format, std::forward<ArgTypes>(args)...)),
+				LogLevel::FATAL
+			);
 		}
 
 		template <typename... ArgTypes>
 		void Error(std::format_string<ArgTypes...> format, ArgTypes&&... args) {
-			std::stringstream stream;
-			stream << "[ERROR]: " << std::format(format, std::forward<ArgTypes>(args)...);
-			this->LogMessage(stream.str(), LogLevel::ERROR);
+			this->LogMessage(
+				std::format("[ERROR]: {}", std::format(format, std::forward<ArgTypes>(args)...)),
+				LogLevel::ERROR
+			);
 		}
 
 		template <typename... ArgTypes>
 		void Warn(std::format_string<ArgTypes...> format, ArgTypes&&... args) {
-			std::stringstream stream;
-			stream << "[WARN]: " << std::format(format, std::forward<ArgTypes>(args)...);
-			this->LogMessage(stream.str(), LogLevel::WARN);
+			this->LogMessage(
+				std::format("[WARN]: {}", std::format(format, std::forward<ArgTypes>(args)...)),
+				LogLevel::WARN
+			);
 		}
 
 		template <typename... ArgTypes>
 		void Info(std::format_string<ArgTypes...> format, ArgTypes&&... args) {
-			std::stringstream stream;
-			stream << "[INFO]: " << std::format(format, std::forward<ArgTypes>(args)...);
-			this->LogMessage(stream.str(), LogLevel::INFO);
+			this->LogMessage(
+				std::format("[INFO]: {}", std::format(format, std::forward<ArgTypes>(args)...)),
+				LogLevel::INFO
+			);
 		}
 
 		#if defined(GRAPE_DEBUG)
 			template <typename... ArgTypes>
 			void Debug(std::format_string<ArgTypes...> format, ArgTypes&&... args) {
-				std::stringstream stream;
-				stream << "[DEBUG]: " << std::format(format, std::forward<ArgTypes>(args)...);
-				this->LogMessage(stream.str(), LogLevel::DEBUG);
+				this->LogMessage(
+					std::format("[DEBUG]: {}", std::format(format, std::forward<ArgTypes>(args)...)),
+					LogLevel::DEBUG
+				);
 			}
 
 			template <typename... ArgTypes>
 			void Trace(std::format_string<ArgTypes...> format, ArgTypes&&... args) {
-				std::stringstream stream;
-				stream << "[TRACE]: " << std::format(format, std::forward<ArgTypes>(args)...);
-				this->LogMessage(stream.str(), LogLevel::TRACE);
+				this->LogMessage(
+					std::format("[TRACE]: {}", std::format(format, std::forward<ArgTypes>(args)...)),
+					LogLevel::TRACE
+				);
 			}
 		#endif
 	};
