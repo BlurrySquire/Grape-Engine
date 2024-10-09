@@ -23,11 +23,21 @@
 #endif
 
 namespace GRAPE {
+	enum LogLevel {
+		NONE = 0,
+		FATAL = 1,
+		ERROR = 2,
+		WARN = 3,
+		INFO = 4,
+		DEBUG = 5,
+		TRACE = 6
+	};
+
 	class Logger {
 	private:
 		Logger(const std::string& log_name);
 
-		void LogMessage(const std::string& message, const std::string& colour);
+		void LogMessage(const std::string& message, LogLevel level);
 
 		std::string log_file;
 	public:
@@ -40,28 +50,28 @@ namespace GRAPE {
 		void Fatal(std::format_string<ArgTypes...> format, ArgTypes&&... args) {
 			std::stringstream stream;
 			stream << "[FATAL]: " << std::format(format, std::forward<ArgTypes>(args)...);
-			this->LogMessage(stream.str(), "\033[97;41m");
+			this->LogMessage(stream.str(), LogLevel::FATAL);
 		}
 
 		template <typename... ArgTypes>
 		void Error(std::format_string<ArgTypes...> format, ArgTypes&&... args) {
 			std::stringstream stream;
 			stream << "[ERROR]: " << std::format(format, std::forward<ArgTypes>(args)...);
-			this->LogMessage(stream.str(), "\033[91m");
+			this->LogMessage(stream.str(), LogLevel::ERROR);
 		}
 
 		template <typename... ArgTypes>
 		void Warn(std::format_string<ArgTypes...> format, ArgTypes&&... args) {
 			std::stringstream stream;
 			stream << "[WARN]: " << std::format(format, std::forward<ArgTypes>(args)...);
-			this->LogMessage(stream.str(), "\033[33m");
+			this->LogMessage(stream.str(), LogLevel::WARN);
 		}
 
 		template <typename... ArgTypes>
 		void Info(std::format_string<ArgTypes...> format, ArgTypes&&... args) {
 			std::stringstream stream;
 			stream << "[INFO]: " << std::format(format, std::forward<ArgTypes>(args)...);
-			this->LogMessage(stream.str(), "\033[36m");
+			this->LogMessage(stream.str(), LogLevel::INFO);
 		}
 
 		#if defined(GRAPE_DEBUG)
@@ -69,14 +79,14 @@ namespace GRAPE {
 			void Debug(std::format_string<ArgTypes...> format, ArgTypes&&... args) {
 				std::stringstream stream;
 				stream << "[DEBUG]: " << std::format(format, std::forward<ArgTypes>(args)...);
-				this->LogMessage(stream.str(), "\033[92m");
+				this->LogMessage(stream.str(), LogLevel::DEBUG);
 			}
 
 			template <typename... ArgTypes>
 			void Trace(std::format_string<ArgTypes...> format, ArgTypes&&... args) {
 				std::stringstream stream;
 				stream << "[TRACE]: " << std::format(format, std::forward<ArgTypes>(args)...);
-				this->LogMessage(stream.str(), "\033[37m");
+				this->LogMessage(stream.str(), LogLevel::TRACE);
 			}
 		#endif
 	};

@@ -14,17 +14,30 @@ namespace GRAPE {
 		}
 	}
 
-	void Logger::LogMessage(const std::string& message, const std::string& colour) {
-		std::cout << colour << message << "\033[0m" << std::endl;
+	void Logger::LogMessage(const std::string& message, LogLevel level) {
+		const std::string log_colours[7] = {
+			"\033[0m",		// NONE
+			"\033[97;41m",	// FATAL
+			"\033[91m",		// ERROR
+			"\033[93m",		// WARN
+			"\033[94m",		// INFO
+			"\033[92m",		// DEBUG
+			"\033[37m"		// TRACE
+		};
 
-		std::fstream file(this->log_file, std::ios::out | std::ios::app);
-		if (file.is_open()) {
-			file.write(message.c_str(), message.size());
-			file.write("\n", 1);
-			file.close();
-		}
-		else {
-			GRAPE_LOG_ERROR("Unable to open log file '{}' for writing.", this->log_file);
+		std::cout << log_colours[level] << message << "\033[0m" << std::endl;
+
+		// We don't write logs with a level of NONE to a file.
+		if (level != LogLevel::NONE) {
+			std::fstream file(this->log_file, std::ios::out | std::ios::app);
+			if (file.is_open()) {
+				file.write(message.c_str(), message.size());
+				file.write("\n", 1);
+				file.close();
+			}
+			else {
+				GRAPE_LOG_ERROR("Unable to open log file '{}' for writing.", this->log_file);
+			}
 		}
 	}
 };
