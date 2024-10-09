@@ -17,8 +17,9 @@ public:
 		GRAPE_LOG_DEBUG("Testing");
 		GRAPE_LOG_TRACE("Testing");
 
-		bool assert_test = false;
-		GRAPE_ASSERT(assert_test == true, "'assert_test == true' failed.");
+		// Asserts kill the process.
+		// bool assert_test = false;
+		// GRAPE_ASSERT(assert_test == true, "'assert_test == true' failed.");
 	}
 
 	void Exit() override {
