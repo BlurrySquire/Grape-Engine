@@ -1,3 +1,2 @@
-* linguist-vendored
-*.cpp linguist-language=cpp
-*.hpp linguist-language=cpp
+submodules/glad/src/*.c linguist-generated
+submodules/glad/include/*/*.h linguist-generated
