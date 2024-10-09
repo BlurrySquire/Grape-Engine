@@ -36,7 +36,7 @@ namespace GRAPE {
 				file.close();
 			}
 			else {
-				GRAPE_LOG_ERROR("Unable to open log file '{}' for writing.", this->log_file);
+				this->LogMessage("Unable to write to log file.", LogLevel::NONE);
 			}
 		}
 	}
