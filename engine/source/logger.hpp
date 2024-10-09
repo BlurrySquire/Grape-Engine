@@ -11,7 +11,10 @@
 #define GRAPE_LOG_TRACE(format, ...) GRAPE::Logger::GetLogger().Trace(format, __VA_ARGS__);
 
 #define GRAPE_ASSERT(value, format, ...) \
-	if (!(value)) { GRAPE::Logger::GetLogger().Fatal(format, __VA_ARGS__); }
+	if (!(value)) { \
+		GRAPE::Logger::GetLogger().Fatal(format, __VA_ARGS__); \
+		exit(-1); \
+	}
 
 #if defined(GRAPE_DEBUG)
 	#define GRAPE_LOG_DEBUG(format, ...) GRAPE::Logger::GetLogger().Debug(format, __VA_ARGS__);
