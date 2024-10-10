@@ -1,9 +1,11 @@
 #ifndef HPP_GRAPEENGINE_WINDOW
 #define HPP_GRAPEENGINE_WINDOW
 
-#include "core.hpp"
+#include <string>
 
 #include <GLFW/glfw3.h>
+
+#include "core.hpp"
 
 namespace System {
 	class Window {

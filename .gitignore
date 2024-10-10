@@ -1,6 +1,10 @@
 # Generic Project Files
 build
 
+# Sandbox Log Files
+sandbox/game-log.txt
+sandbox/test-log.txt
+
 # Visual Studio 2022 Files
 */*.vcxproj
 */*.vcxproj.user
