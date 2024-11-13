@@ -37,7 +37,7 @@ workspace "Grape-Engine"
         symbols		"Off"
 
     filter "configurations:RelWithDebug"
-        defines		"GRAPE_BUILD_RELWITHDEBUG"
+        defines		"GRAPE_BUILD_DEBUG"
         optimize	"Full"
         runtime		"Release"
         symbols		"Full"
