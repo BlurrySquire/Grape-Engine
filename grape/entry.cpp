@@ -1,17 +1,13 @@
 #include <iostream>
+#include <memory>
+
+#include <core/core.hpp>
 
 extern int game_entry(int argc, char* argv[]);
+extern GameConfig game_config;
 
 int engine_entry(int argc, char* argv[]) {
-	int exit_code = game_entry(argc, argv);
-
-    #if defined(GRAPE_BUILD_DEBUG)
-        #if defined(GRAPE_PLATFORM_WINDOWS)
-            system("pause");
-        #endif
-    #endif
-
-    return exit_code;
+	return game_entry(argc, argv);
 }
 
 #if defined(GRAPE_PLATFORM_WINDOWS)
@@ -34,7 +30,13 @@ int WINAPI WinMain(_In_ [[maybe_unused]] HINSTANCE hInstance, _In_opt_ [[maybe_u
         std::ios::sync_with_stdio(true);
     #endif
 
-	return engine_entry(__argc, __argv);
+	int exit_code = engine_entry(__argc, __argv);
+
+    #if defined(GRAPE_BUILD_DEBUG)
+        system("pause");
+    #endif
+
+    return exit_code;
 }
 
 #elif defined(GRAPE_PLATFORM_LINUX)
