@@ -2,11 +2,14 @@
 #include <memory>
 
 #include <core/core.hpp>
+#include <core/logger.hpp>
 
 extern int game_entry(int argc, char* argv[]);
 extern GameConfig game_config;
 
 int engine_entry(int argc, char* argv[]) {
+    std::unique_ptr<GRAPE::Logger> logger = std::make_unique<GRAPE::Logger>(game_config.title);
+
 	return game_entry(argc, argv);
 }
 

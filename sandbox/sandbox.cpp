@@ -1,4 +1,5 @@
 #include <grape/core/core.hpp>
+#include <grape/core/logger.hpp>
 
 #include <iostream>
 
@@ -9,7 +10,7 @@ GameConfig game_config = {
 };
 
 int game_entry([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) {
-	std::cout << "Hello, World!" << std::endl;
+	GRAPE_LOG_INFO("Hello, World!");
 
 	return 0;
 }

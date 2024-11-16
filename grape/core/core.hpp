@@ -2,6 +2,7 @@
 #define GRAPEENGINE_CORE_HPP
 
 #include <string>
+#include <vector>
 
 using u8 = unsigned char;
 using u16 = unsigned short;
