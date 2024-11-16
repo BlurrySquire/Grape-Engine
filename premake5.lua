@@ -52,6 +52,11 @@ workspace "Grape-Engine"
         {
             "GRAPE_PLATFORM_WINDOWS"
         }
+
+        buildoptions
+        {
+            "/utf-8"
+        }
     
     filter "system:linux"
         defines
@@ -64,3 +69,4 @@ include "grape/grape.lua"
 include "sandbox/sandbox.lua"
 
 include "submodules/glfw_premake5.lua"
+include "submodules/spdlog_premake5.lua"

@@ -18,5 +18,6 @@ project "GRAPE"
 
     links
     {
-        "glfw"
+        "glfw",
+        "spdlog"
     }
