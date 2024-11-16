@@ -6,6 +6,7 @@ IncludeDirectories["glfw"] = "%{wks.location}/submodules/glfw/include"
 workspace "Grape-Engine"
     architecture    "x86_64"
     startproject    "Sandbox"
+    characterset    "unicode"
 
     targetdir       "build/bin/%{cfg.system}/%{cfg.buildcfg}/%{prj.name}"
     objdir          "build/obj/%{cfg.system}/%{cfg.buildcfg}/%{prj.name}"
