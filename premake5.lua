@@ -67,7 +67,10 @@ workspace "Grape-Engine"
 
 
 include "grape/grape.lua"
-include "sandbox/sandbox.lua"
 
 include "submodules/glfw_premake5.lua"
 include "submodules/spdlog_premake5.lua"
+
+-- CHANGE THIS TO THE NAME OF YOUR PROJECT
+-- include "prj_name/prj_name.lua"
+include "sandbox/sandbox.lua"
