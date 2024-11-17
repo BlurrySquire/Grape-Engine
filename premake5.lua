@@ -52,16 +52,17 @@ workspace "Grape-Engine"
         {
             "GRAPE_PLATFORM_WINDOWS"
         }
-
-        buildoptions
-        {
-            "/utf-8"
-        }
     
     filter "system:linux"
         defines
         {
             "GRAPE_PLATFORM_LINUX"
+        }
+
+    filter "actions:vs"
+        buildoptions
+        {
+            "/utf-8"
         }
 
 

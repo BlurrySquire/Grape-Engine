@@ -2,7 +2,6 @@ project "spdlog"
     location    "%{wks.location}/submodules/spdlog"
     kind        "StaticLib"
     language    "C++"
-	characterset	"unicode"
 
     files
     {
