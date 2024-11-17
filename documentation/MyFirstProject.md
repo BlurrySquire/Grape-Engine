@@ -28,6 +28,7 @@ project "PROJECT_NAME"
         "Grape"
     }
 ```
+- In the main ``premake5.lua`` file replace the references to ``Sandbox`` with the title of your project. The important ones have been marked for you to easily find.
 
 - Use [premake5](https://premake.github.io/) to create the project files for your selected build system (e.g. ``premake5 vs2022`` for Visual Studio Community 2022).
 

@@ -5,7 +5,7 @@ IncludeDirectories["glfw"] = "%{wks.location}/submodules/glfw/include"
 
 workspace "Grape-Engine"
     architecture    "x86_64"
-    startproject    "Sandbox"
+    startproject    "Sandbox" -- REPLACE THIS WITH PROJECT NAME
     characterset    "unicode"
 
     targetdir       "build/bin/%{cfg.system}/%{cfg.buildcfg}/%{prj.name}"
