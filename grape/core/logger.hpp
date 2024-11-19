@@ -17,12 +17,12 @@
 namespace GRAPE {
 	class Logger {
 	private:
-		static std::shared_ptr<spdlog::logger> pLogger;
+		static std::shared_ptr<spdlog::logger> _logger;
 	public:
 		Logger(const std::string& log_name);
 
 		inline static std::shared_ptr<spdlog::logger>& GetLogger() {
-			return pLogger;
+			return _logger;
 		}
 	};
 } // GRAPE

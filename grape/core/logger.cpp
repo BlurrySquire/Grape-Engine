@@ -1,7 +1,7 @@
 #include "logger.hpp"
 
 namespace GRAPE {
-	std::shared_ptr<spdlog::logger> Logger::pLogger;
+	std::shared_ptr<spdlog::logger> Logger::_logger;
 
 	Logger::Logger(const std::string& log_name) {
 		spdlog::level::level_enum level = spdlog::level::trace;
@@ -17,7 +17,7 @@ namespace GRAPE {
 		logger.set_level(level);
 		logger.set_pattern("%^%L: %v%$");
 
-		this->pLogger = std::make_shared<spdlog::logger>(logger);
-		spdlog::set_default_logger(this->pLogger);
+		this->_logger = std::make_shared<spdlog::logger>(logger);
+		spdlog::set_default_logger(this->_logger);
 	}
 } // GRAPE

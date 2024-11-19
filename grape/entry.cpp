@@ -3,14 +3,15 @@
 
 #include <core/core.hpp>
 #include <core/logger.hpp>
+#include <core/application.hpp>
 
-extern int game_entry(int argc, char* argv[]);
-extern GameConfig game_config;
+extern int app_entry(int argc, char* argv[]);
+extern GRAPE::AppConfig app_config;
 
 int engine_entry(int argc, char* argv[]) {
-    std::unique_ptr<GRAPE::Logger> logger = std::make_unique<GRAPE::Logger>(game_config.title);
+    std::unique_ptr<GRAPE::Logger> logger = std::make_unique<GRAPE::Logger>(app_config.title);
 
-	return game_entry(argc, argv);
+	return app_entry(argc, argv);
 }
 
 #if defined(GRAPE_PLATFORM_WINDOWS)

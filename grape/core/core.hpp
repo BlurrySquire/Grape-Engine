@@ -17,9 +17,4 @@ using i64 = signed long long;
 using f32 = float;
 using f64 = double;
 
-struct GameConfig {
-	std::string title;
-	u32 width, height;
-};
-
 #endif
