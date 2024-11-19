@@ -4,10 +4,12 @@
 
 #include <iostream>
 
-GRAPE::AppConfig app_config = {
+GRAPE::AppState app_state = {
 	.title = "Grape-Engine Sandbox",
 	.width = 800,
-	.height = 600
+	.height = 600,
+
+	.logger = nullptr
 };
 
 class Sandbox : public GRAPE::Application {
@@ -26,7 +28,7 @@ public:
 int app_entry([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) {
 	GRAPE_LOG_INFO("Hello, World!");
 
-	Sandbox sandbox(&app_config);
+	Sandbox sandbox(&app_state);
 	sandbox.Init();
 	sandbox.Exit();
 

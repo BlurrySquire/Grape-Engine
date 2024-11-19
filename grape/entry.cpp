@@ -6,10 +6,10 @@
 #include <core/application.hpp>
 
 extern int app_entry(int argc, char* argv[]);
-extern GRAPE::AppConfig app_config;
+extern GRAPE::AppState app_state;
 
 int engine_entry(int argc, char* argv[]) {
-    std::unique_ptr<GRAPE::Logger> logger = std::make_unique<GRAPE::Logger>(app_config.title);
+    app_state.logger = std::make_unique<GRAPE::Logger>(app_state.title);
 
 	return app_entry(argc, argv);
 }

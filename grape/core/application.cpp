@@ -1,8 +1,8 @@
 #include "application.hpp"
 
 namespace GRAPE {
-	Application::Application(AppConfig* appConfig)
-		: _appConfig(appConfig) {
+	Application::Application(AppState* appState)
+		: _appState(appState) {
 	}
 
 	void Application::Init() {

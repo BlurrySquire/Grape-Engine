@@ -2,19 +2,24 @@
 #define GRAPEENGINE_CORE_APPLICATION_HPP
 
 #include "core.hpp"
+#include "logger.hpp"
+
+#include <memory>
 
 namespace GRAPE {
-	struct AppConfig {
+	struct AppState {
 		std::string title;
 		u32 width, height;
+
+		std::unique_ptr<Logger> logger;
 	};
 
 	class Application {
 	private:
-		AppConfig* _appConfig;
+		AppState* _appState;
 
 	public:
-		Application(AppConfig* appConfig);
+		Application(AppState* appState);
 
 		virtual void Init();
 		virtual void Exit();
